@@ -1,5 +1,6 @@
 //logic : get data from form, convert to array with one string by index, 4 block and 1 parity block who is the concat of the 4 others
 // for now, parity always on the index 4, the relative value for parity in comment in parser, fonction in coming
+// example : array[2]['a', 'b', 'c', 'd', 'abcd']
 export function callRaid () {
 	let data = document.getElementById("data").value;
 	//convert data into string array with one sting by index
