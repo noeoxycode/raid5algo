@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>display table</title>
+    <script type="module">
+		import {callRaid} from './index.js';
+		window.callRaid = callRaid;
+    </script>
 </head>
 <body>
 <h1>Here the RAID5 algo displayed</h1>
+<form name="getData" id="getData">
+    <input type="text" name="lorem ipsum" placeholder="Enter your text here" id="data"><br>
+
+    <button type="button" onclick="callRaid()">Submit</button>
+
+</form>
 </body>
 </html>
