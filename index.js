@@ -1,18 +1,18 @@
-
+//logic : get data from form, convert to array with one string by index, 4 block and 1 parity block who is the concat of the 4 others
+// for now, parity always on the index 4, the relative value for parity in comment in parser, fonction in coming
 export function callRaid () {
 	let data = document.getElementById("data").value;
-	console.log(data);
-	let parsedData = parser(data);
-	console.log(parsedData);
+	//convert data into string array with one sting by index
+	var dataSplitted = data.split("");
+	parser(dataSplitted);
 }
 
-
+//split the array data in two part and return an array of 2 array, first half and second half
 function parser (data) {
-	var dataSplited = toString(data).split("");
-	console.log(data);
 	let parity = 4;
-	var raidedData = [1][1];
-	for (let cpt = 0; cpt < dataSplited.length; cpt++)
+	//insitialisation of final array, not rly sure about this
+	var raidedData;
+	for (let cpt = 0; cpt < data.length; cpt++)
 	{
 		for (let cptBis = 0; cptBis<4; cptBis++)
 		{
@@ -25,14 +25,13 @@ function parser (data) {
 					parity++;
 				cptBis++;
 			}*/
-			raidedData[cpt][cptBis] = dataSplited[cpt];
-			raidedData[cpt][parity] += dataSplited[cpt]
+			raidedData[cpt][cptBis] = data[cpt];
+			raidedData[cpt][parity] += data[cpt]
 			cpt++;
-			if (cpt >= dataSplited.length)
+			if (cpt >= data.length)
 				break;
 		}
 		cpt++;
-
 	}
 	return raidedData;
 }
