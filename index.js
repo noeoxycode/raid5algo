@@ -17,17 +17,20 @@ function parser (data) {
 	{
 		for (let cptBis = 0; cptBis<4; cptBis++)
 		{
-			/*if (cptBis == parity)
+			if (cptBis == parity)
 			{
-
 				if (parity == 0)
 					parity = 4;
 				else
 					parity++;
 				cptBis++;
-			}*/
-			raidedData[cpt][cptBis] = data[cpt];
-			raidedData[cpt][parity] += data[cpt]
+			}
+			else
+			{
+				raidedData[cpt][cptBis] = data[cpt];
+				raidedData[cpt][parity] += data[cpt]
+			}
+
 			cpt++;
 			if (cpt >= data.length)
 				break;
