@@ -2,44 +2,63 @@
 // for now, parity always on the index 4, the relative value for parity in comment in parser, fonction in coming
 // example : array[2]['a', 'b', 'c', 'd', 'abcd']
 export function callRaid () {
-	let data = document.getElementById("data").value;
+	let row = document.getElementById("row").value;
+	let col = document.getElementById("col").value;
 	//convert data into string array with one sting by index
-	var dataSplitted = data.split("");
-	parser(dataSplitted);
+	const data = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+	let raidedData = [];
+	if (row == 0 || col == 0)
+		document.write("Erreur de saisie, aucune valeure ne doit être nulle");
+	else
+		raidedData = raid(row, col, data);
+	console.log(raidedData);
 }
 
 //split the array data in two part and return an array of 2 array, first half and second half
-function parser (data) {
-	let parity = 4;
-	console.log(data);
-	//insitialisation of final array, not rly sure about this
+function raid (row, col, data) {
+	let cptAlphabet = 0;
+	let parity = col-1;
 	var raidedData = [];
 	var tmpArray = [];
-	let cpt = 0;
-		for (let cptBis = 0; cptBis<4; cptBis++)
+	for (let i = 0; i < row; i++)
+	{
+		const ul = document.createElement("ul");
+
+		tmpArray = [];
+		for (let j = 0; j < col; j++)
 		{
-			if (cptBis == parity)
+			if (j != parity)
 			{
-				if (parity == 0)
-					parity = 4;
-				else
-					parity++;
-				cptBis++;
+
+				tmpArray[j] = data[cptAlphabet];
+				tmpArray[parity] += data[cptAlphabet];
+				cptAlphabet = updateCpt(cptAlphabet);
 			}
-			else
-			{
-				tmpArray.push([data[cpt]]);
-				tmpArray[parity] += data[cpt]
-			}
-			if (cpt%4 == 0)
-			{
-				raidedData.push(tmpArray);
-				console.log(tmpArray);
-				tmpArray = [];
-			}
-			cpt++;
-			if (cpt >= data.length)
-				break;
 		}
+		parity = updateParity(parity, col);
+		raidedData[i] = tmpArray;
+	}
 	return raidedData;
 }
+
+function updateCpt(cpt) {
+
+	if (cpt == 26)
+		return 0;
+	else{
+		cpt++;
+		return cpt;
+	}
+
+}
+
+function updateParity(parity, col)
+{
+	if (parity == 0)
+		return col-1;
+	else
+	{
+		parity--;
+		return parity;
+	}
+	}
