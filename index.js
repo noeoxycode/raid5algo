@@ -61,4 +61,4 @@ function updateParity(parity, col)
 		parity--;
 		return parity;
 	}
-	}
+}
