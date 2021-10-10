@@ -11,10 +11,11 @@ export function callRaid () {
 //split the array data in two part and return an array of 2 array, first half and second half
 function parser (data) {
 	let parity = 4;
+	console.log(data);
 	//insitialisation of final array, not rly sure about this
-	var raidedData;
-	for (let cpt = 0; cpt < data.length; cpt++)
-	{
+	var raidedData = [];
+	var tmpArray = [];
+	let cpt = 0;
 		for (let cptBis = 0; cptBis<4; cptBis++)
 		{
 			if (cptBis == parity)
@@ -27,15 +28,18 @@ function parser (data) {
 			}
 			else
 			{
-				raidedData[cpt][cptBis] = data[cpt];
-				raidedData[cpt][parity] += data[cpt]
+				tmpArray.push([data[cpt]]);
+				tmpArray[parity] += data[cpt]
 			}
-
+			if (cpt%4 == 0)
+			{
+				raidedData.push(tmpArray);
+				console.log(tmpArray);
+				tmpArray = [];
+			}
 			cpt++;
 			if (cpt >= data.length)
 				break;
 		}
-		cpt++;
-	}
 	return raidedData;
 }
