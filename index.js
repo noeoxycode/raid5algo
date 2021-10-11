@@ -15,7 +15,7 @@ export function callRaid () {
 function raid (row, col, data) {
 	let cptAlphabet = 0;
 	let parity = col-1;
-	var tmpArray = [];
+	let tmpArray = [];
 	displayHeader(col);
 	let tmpVar ="";
 	// First loop, to start a new row
