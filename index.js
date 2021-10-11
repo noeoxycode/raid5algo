@@ -64,7 +64,6 @@ function displayHeader(col)
 {
 	const container = document.createElement('div');
 	const list = document.createElement('ul');
-	const size = col;
 	document.getElementsByTagName('body')[0].appendChild(container);
 	container.appendChild(list);
 	for (let i = 0; i < col; ++i) {
