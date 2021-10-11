@@ -37,6 +37,7 @@ function raid (row, col, data) {
 		}
 		parity = updateParity(parity, col);
 		raidedData[i] = tmpArray;
+		displayResult(tmpArray);
 	}
 	return raidedData;
 }
@@ -60,5 +61,23 @@ function updateParity(parity, col)
 	{
 		parity--;
 		return parity;
+	}
+}
+
+function displayResult(raidedData) {
+	// Establish the array which acts as a data source for the list
+	// Make a container element for the list
+	const container = document.createElement('div'),
+		// Make the list
+		list = document.createElement('ul'),
+		// Set up a loop that goes through the items in listItems one at a time
+		size = raidedData.length;
+	// Add it to the page
+	document.getElementsByTagName('body')[0].appendChild(container);
+	container.appendChild(list);
+	for (let i = 0; i < size; ++i) {
+		let listItem = document.createElement('li');
+		listItem.innerHTML = raidedData[i];
+		list.appendChild(listItem);
 	}
 }
