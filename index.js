@@ -1,37 +1,36 @@
-// Logic : get data from form, convert to array with one string by index, 4 block and 1 parity block who is the concat of the 4 others
-// For now, parity always on the index 4, the relative value for parity in comment in parser, fonction in coming
-// Example : array[2]['a', 'b', 'c', 'd', 'abcd']
+// Logic : get data from form, and generate ul li based on data alpha
+// Loop : when the loop reaches Z, it comes back to A
 export function callRaid () {
 	let row = document.getElementById("row").value;
 	let col = document.getElementById("col").value;
 	//convert data into string array with one sting by index
 	const data = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-	let raidedData = [];
 	if (row == 0 || col == 0)
-		document.write("Erreur de saisie, aucune valeure ne doit être nulle");
+		document.write("Error, please use valid values");
 	else
 		raid(row, col, data);
 }
 
-//split the array data in two part and return an array of 2 array, first half and second half
+// Loop to have one element by box, for columns-1, and one box that concat all the others box from his rows
 function raid (row, col, data) {
 	let cptAlphabet = 0;
 	let parity = col-1;
 	var tmpArray = [];
 	displayHeader(col);
 	let tmpVar ="";
+	// First loop, to start a new row
 	for (let i = 0; i < row; i++)
 	{
 		tmpArray = [];
 		tmpVar = "";
-
+		// Second loop to add a new content in a box
 		for (let j = 0; j < col; j++)
 		{
 			if (j != parity)
 			{
 				tmpArray[j] = data[cptAlphabet];
 				tmpVar += data[cptAlphabet];
-				cptAlphabet = updateCpt(cptAlphabet);
+				cptAlphabet = updateCpt(cptAlphabet,data.length);
 			}
 		}
 		// Had to use a tmpVar because of undefined at index 0 for +=
@@ -41,8 +40,8 @@ function raid (row, col, data) {
 	}
 }
 
-function updateCpt(cpt) {
-	if (cpt == 25)
+function updateCpt(cpt, dataSize) {
+	if (cpt == dataSize-1)
 		return 0;
 	else{
 		cpt++;
