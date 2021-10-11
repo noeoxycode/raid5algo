@@ -1,0 +1,17 @@
+body {
+    background : #d9ffd2
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+}
+
+ul li {
+    border: black solid 2px;
+    display: inline-block;
+    width: 10em;
+    padding: 15px;
+    text-align: center;
+
+}
